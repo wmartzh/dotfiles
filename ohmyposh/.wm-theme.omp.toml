@@ -1,0 +1,99 @@
+#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version = 2
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'diamond'
+    foreground = '#3EC669'
+    background = '#29315A'
+    leading_diamond = ''
+    trailing_diamond = ''
+    template = ' {{ .Path }}'
+
+    [blocks.segments.properties]
+      style = 'mixed'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'diamond'
+    foreground = '#43CCEA'
+    foreground_templates = ['{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9248{{ end }}', '{{ if and (gt .Ahead 0) (gt .Behind 0) }}#ff4500{{ end }}', '{{ if gt .Ahead 0 }}#B388FF{{ end }}', '{{ if gt .Behind 0 }}#B388FF{{ end }}']
+    background = '#29315A'
+    leading_diamond = ' '
+    trailing_diamond = ''
+    template = ' {{ .UpstreamIcon }}{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }}  {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }}  {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }}  {{ .StashCount }}{{ end }} '
+
+    [blocks.segments.properties]
+      branch_max_length = 25.0
+      fetch_stash_count = true
+      fetch_status = true
+      fetch_upstream_icon = true
+
+  [[blocks.segments]]
+    type = 'status'
+    style = 'plain'
+    foreground = '#C94A16'
+    template = 'x '
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'node'
+    style = 'plain'
+    foreground = '#5fb157'
+    template = '{{ if .PackageManagerIcon }}{{ .PackageManagerIcon }} {{ end }} {{ .Full }}'
+
+    [blocks.segments.properties]
+      display_mode = 'files'
+      fetch_package_manager = true
+      fetch_version = true
+      npm_icon = '<#FE4A49> npm</> '
+      yarn_icon = '<#44FFD2> yarn</> '
+
+  [[blocks.segments]]
+    type = 'crystal'
+    style = 'plain'
+    foreground = '#4063D8'
+    template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'files'
+      fetch_version = true
+
+  [[blocks.segments]]
+    type = 'ruby'
+    style = 'plain'
+    foreground = '#DE3F24'
+    template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'files'
+      fetch_version = true
+
+  [[blocks.segments]]
+    type = 'python'
+    style = 'plain'
+    foreground = '#FED142'
+    template = ' {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      fetch_virtual_env = false
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    style = 'plain'
+    foreground = '#63F08C'
+    template = '➜ '

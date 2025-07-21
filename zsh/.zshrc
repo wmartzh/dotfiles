@@ -169,8 +169,13 @@ alias ps-fe='nr start:fe'
 alias ps-be='nr start:api'
 alias pga= 'gaa apps/phoenix-api/src/ '
 
+### tmux 
 
-
+alias tx='tmux'
+alias tx-n='tmux new -s'
+alias tx-a='tmux attach -t'
+alias tx-ls='tmux ls'
+alias tx-rm="tmux kill-session -t" 
 
 # bun completions
 [ -s "/Users/wmartzh/.bun/_bun" ] && source "/Users/wmartzh/.bun/_bun"
@@ -183,3 +188,5 @@ export PATH="$BUN_INSTALL/bin:$GO:$PATH"
 # Initialize zsh completions (added by deno install script)
 autoload -Uz compinit
 compinit
+
+. "$HOME/.local/bin/env"
